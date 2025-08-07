@@ -1,0 +1,1800 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Viral Vault - Instagram Reels Analytics</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #FF3E30;
+            --primary-dark: #E53930;
+            --primary-light: rgba(255, 62, 48, 0.1);
+            --accent: #FF3E30;
+            --accent-light: rgba(255, 62, 48, 0.1);
+            --dark: #1A1A1A;
+            --darker: #0F0F0F;
+            --light: #FFFFFF;
+            --light-gray: #F9FAFB;
+            --medium-gray: #E5E7EB;
+            --dark-gray: #6B7280;
+            --text: #111827;
+            --success: #10B981;
+            --urgent: #FF3E30;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text);
+            background-color: var(--light);
+            line-height: 1.6;
+            overflow-x: hidden;
+            font-size: 16px;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        section {
+            padding: 90px 0;
+        }
+        
+        /* Header */
+        header {
+            background-color: var(--light);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: 18px 0;
+            border-bottom: 1px solid var(--medium-gray);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 700;
+            font-size: 22px;
+            color: var(--dark);
+            text-decoration: none;
+        }
+        
+        .logo-flame {
+            color: var(--accent);
+            font-size: 24px;
+        }
+        
+        .cta-button {
+            background: var(--primary);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            font-size: 16px;
+            display: inline-block;
+            transition: all 0.2s ease;
+            border: none;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cta-button:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 62, 48, 0.3);
+        }
+        
+        .cta-button:after {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -60%;
+            width: 20px;
+            height: 200%;
+            background: rgba(255,255,255,0.3);
+            transform: rotate(25deg);
+            transition: all 0.5s;
+        }
+        
+        .cta-button:hover:after {
+            left: 110%;
+        }
+        
+        /* Hero Section */
+        .hero {
+            padding: 100px 0 80px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, #f8f9fc 0%, #ffffff 100%);
+        }
+        
+        .hero::before {
+            content: "";
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: linear-gradient(120deg, rgba(255, 62, 48, 0.1) 0%, rgba(255, 62, 48, 0) 70%);
+            top: -150px;
+            right: -150px;
+            z-index: 0;
+        }
+        
+        .hero::after {
+            content: "";
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: linear-gradient(120deg, rgba(255, 62, 48, 0.1) 0%, rgba(255, 62, 48, 0) 70%);
+            bottom: -100px;
+            left: -100px;
+            z-index: 0;
+        }
+        
+        .hero h1 {
+            font-size: 42px;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 25px;
+            color: var(--dark);
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .hero h1 span {
+            color: var(--primary);
+            position: relative;
+        }
+        
+        .hero h1 span::after {
+            content: '';
+            position: absolute;
+            bottom: 5px;
+            left: 0;
+            width: 100%;
+            height: 8px;
+            background: rgba(255, 62, 48, 0.2);
+            z-index: -1;
+        }
+        
+        .hero p {
+            font-size: 18px;
+            color: var(--dark-gray);
+            margin-bottom: 35px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .hero-image {
+            max-width: 700px;
+            margin: 50px auto 0;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            position: relative;
+            border: 1px solid var(--medium-gray);
+        }
+        
+        .hero-image img {
+            width: 100%;
+            display: block;
+            transition: all 0.4s ease;
+        }
+        
+        .hero-image:hover img {
+            transform: scale(1.03);
+        }
+        
+        .urgency-badge {
+            display: inline-block;
+            background: linear-gradient(45deg, var(--accent), #FF726B);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 15px rgba(255, 62, 48, 0.3);
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .stat-item {
+            text-align: center;
+            background: var(--light);
+            padding: 15px 25px;
+            border-radius: 12px;
+            min-width: 140px;
+            border: 1px solid var(--medium-gray);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .stat-value {
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--primary);
+            line-height: 1;
+        }
+        
+        .stat-label {
+            font-size: 14px;
+            color: var(--dark-gray);
+            margin-top: 8px;
+        }
+        
+        /* Features */
+        .features {
+            background-color: var(--light-gray);
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+            position: relative;
+        }
+        
+        .section-header h2 {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+        
+        .section-header h2:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background: var(--primary);
+            border-radius: 2px;
+        }
+        
+        .section-header p {
+            font-size: 18px;
+            color: var(--dark-gray);
+            max-width: 600px;
+            margin: 25px auto 0;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        
+        .feature-card {
+            background: white;
+            border-radius: 12px;
+            padding: 35px 30px;
+            text-align: center;
+            border: 1px solid var(--medium-gray);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.08);
+        }
+        
+        .feature-card:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: var(--primary);
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+        }
+        
+        .feature-card:hover:before {
+            transform: translateX(0);
+        }
+        
+        .feature-icon {
+            width: 70px;
+            height: 70px;
+            background: var(--primary-light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            transition: all 0.3s ease;
+        }
+        
+        .feature-card:hover .feature-icon {
+            background: var(--primary);
+        }
+        
+        .feature-card:hover .feature-icon i {
+            color: white;
+        }
+        
+        .feature-icon i {
+            font-size: 28px;
+            color: var(--primary);
+            transition: all 0.3s ease;
+        }
+        
+        .feature-card h3 {
+            font-size: 20px;
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+        
+        .feature-card p {
+            color: var(--dark-gray);
+            font-size: 16px;
+        }
+        
+        /* Comparison Section */
+        .comparison {
+            background: linear-gradient(135deg, #f1f5f9 0%, #e9ecef 100%);
+        }
+        
+        .comparison-container {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+            border: 1px solid var(--medium-gray);
+        }
+        
+        .comparison-header {
+            background: linear-gradient(45deg, var(--primary), var(--primary-dark));
+            color: white;
+            text-align: center;
+            padding: 25px;
+        }
+        
+        .comparison-header h3 {
+            font-size: 26px;
+            font-weight: 700;
+        }
+        
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
+        }
+        
+        @media (max-width: 768px) {
+            .comparison-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .comparison-column {
+            padding: 35px;
+            position: relative;
+        }
+        
+        .comparison-column:first-child {
+            border-right: 1px solid var(--medium-gray);
+        }
+        
+        @media (max-width: 768px) {
+            .comparison-column:first-child {
+                border-right: none;
+                border-bottom: 1px solid var(--medium-gray);
+            }
+        }
+        
+        .column-header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        
+        .without-icon {
+            background: var(--primary-light);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--urgent);
+            font-size: 22px;
+            flex-shrink: 0;
+        }
+        
+        .with-icon {
+            background: var(--success);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 22px;
+            flex-shrink: 0;
+        }
+        
+        .column-header h4 {
+            font-size: 22px;
+            font-weight: 700;
+        }
+        
+        .video-container {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            margin-bottom: 25px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            height: 300px;
+            background: #f8f9fa;
+            border: 1px solid var(--medium-gray);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .video-container video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .play-button {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2;
+            backdrop-filter: blur(5px);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .play-button:hover {
+            transform: scale(1.1);
+            background: rgba(255, 255, 255, 0.3);
+        }
+        
+        .play-button i {
+            color: white;
+            font-size: 28px;
+        }
+        
+        .comparison-list {
+            list-style: none;
+        }
+        
+        .comparison-list li {
+            padding: 15px 0;
+            border-bottom: 1px solid var(--medium-gray);
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            font-size: 16px;
+        }
+        
+        .comparison-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .comparison-list i {
+            font-size: 20px;
+            margin-top: 4px;
+            flex-shrink: 0;
+        }
+        
+        .without-list i {
+            color: var(--urgent);
+        }
+        
+        .with-list i {
+            color: var(--success);
+        }
+        
+        /* How It Works */
+        .how-it-works {
+            background-color: white;
+        }
+        
+        .steps {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 25px;
+            margin-top: 30px;
+        }
+        
+        .step {
+            flex: 1;
+            min-width: 240px;
+            text-align: center;
+            padding: 35px 25px;
+            background: white;
+            border-radius: 12px;
+            border: 1px solid var(--medium-gray);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .step:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.08);
+        }
+        
+        .step-number {
+            width: 50px;
+            height: 50px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            font-weight: 700;
+            margin: 0 auto 20px;
+            box-shadow: 0 4px 10px rgba(255, 62, 48, 0.3);
+        }
+        
+        .step h3 {
+            font-size: 18px;
+            margin-bottom: 12px;
+        }
+        
+        .step p {
+            color: var(--dark-gray);
+            font-size: 15px;
+        }
+        
+        /* Enhanced Pricing Section */
+        .pricing {
+            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .pricing::before {
+            content: "";
+            position: absolute;
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            background: linear-gradient(120deg, rgba(255, 62, 48, 0.1) 0%, rgba(255, 62, 48, 0) 70%);
+            top: -100px;
+            right: -100px;
+            z-index: 0;
+        }
+        
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .pricing-card {
+            background: white;
+            border-radius: 16px;
+            padding: 45px 30px;
+            border: 1px solid var(--medium-gray);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+            z-index: 1;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .pricing-card.featured {
+            border: 2px solid var(--primary);
+            box-shadow: 0 20px 40px rgba(255, 62, 48, 0.15);
+            z-index: 2;
+            transform: scale(1.03);
+        }
+        
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.1);
+        }
+        
+        .pricing-card.featured:hover {
+            transform: scale(1.03) translateY(-10px);
+        }
+        
+        .pricing-header {
+            margin-bottom: 25px;
+        }
+        
+        .pricing-name {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        
+        .pricing-description {
+            color: var(--dark-gray);
+            font-size: 16px;
+        }
+        
+        .price {
+            font-size: 48px;
+            font-weight: 700;
+            margin: 20px 0 10px;
+            color: var(--dark);
+        }
+        
+        .price span {
+            font-size: 20px;
+            color: var(--dark-gray);
+        }
+        
+        .price-note {
+            font-size: 16px;
+            margin-bottom: 25px;
+            color: var(--dark-gray);
+        }
+        
+        .pricing-features {
+            list-style: none;
+            text-align: left;
+            margin: 30px 0;
+            padding: 0;
+            flex-grow: 1;
+        }
+        
+        .pricing-features li {
+            padding: 10px 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-bottom: 1px solid var(--medium-gray);
+        }
+        
+        .pricing-features li:last-child {
+            border-bottom: none;
+        }
+        
+        .pricing-features li i {
+            color: var(--success);
+            font-size: 18px;
+        }
+        
+        .offer-badge {
+            position: absolute;
+            top: 20px;
+            right: -40px;
+            background: var(--accent);
+            color: white;
+            padding: 6px 40px;
+            font-weight: 700;
+            font-size: 14px;
+            transform: rotate(45deg);
+            width: 180px;
+            text-align: center;
+            z-index: 2;
+        }
+        
+        .countdown {
+            background: rgba(255, 62, 48, 0.05);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 25px 0;
+            border: 1px dashed var(--primary);
+        }
+        
+        .countdown h3 {
+            font-size: 16px;
+            margin-bottom: 15px;
+            color: var(--primary);
+            font-weight: 600;
+        }
+        
+        .timer {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .timer-unit {
+            background: white;
+            border-radius: 8px;
+            padding: 12px;
+            min-width: 70px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            border: 1px solid var(--medium-gray);
+        }
+        
+        .timer-value {
+            font-family: 'Inter', sans-serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        
+        .timer-label {
+            font-size: 14px;
+            opacity: 0.8;
+            margin-top: 5px;
+            color: var(--dark-gray);
+        }
+        
+        .guarantee {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 25px;
+            color: var(--dark-gray);
+            font-size: 16px;
+        }
+        
+        .guarantee i {
+            color: var(--success);
+        }
+        
+        .license-counter {
+            background: rgba(255, 62, 48, 0.05);
+            padding: 10px 15px;
+            border-radius: 50px;
+            display: inline-block;
+            font-size: 14px;
+            margin-top: 15px;
+            border: 1px dashed var(--primary);
+            color: var(--primary);
+            font-weight: 600;
+        }
+        
+        .value-comparison {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .value-item {
+            background: var(--light);
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid var(--medium-gray);
+            text-align: center;
+            min-width: 200px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .value-title {
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .value-amount {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        
+        /* Testimonials */
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+        
+        .testimonial {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            border: 1px solid var(--medium-gray);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .testimonial:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.08);
+        }
+        
+        .testimonial:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--primary);
+        }
+        
+        .testimonial-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .testimonial-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--primary-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            color: var(--primary);
+            font-size: 20px;
+        }
+        
+        .testimonial-author {
+            font-weight: 600;
+            font-size: 18px;
+        }
+        
+        .testimonial-role {
+            color: var(--dark-gray);
+            font-size: 14px;
+        }
+        
+        .testimonial-content {
+            color: var(--text);
+            font-size: 16px;
+            position: relative;
+            z-index: 1;
+            font-style: italic;
+        }
+        
+        .rating {
+            color: #FFD700;
+            margin-top: 15px;
+            font-size: 16px;
+        }
+        
+        /* FAQ */
+        .faq {
+            background-color: var(--light-gray);
+        }
+        
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .faq-item {
+            margin-bottom: 15px;
+            border-radius: 12px;
+            overflow: hidden;
+            background: white;
+            border: 1px solid var(--medium-gray);
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .faq-item:hover {
+            border-color: var(--primary);
+        }
+        
+        .faq-question {
+            padding: 20px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: white;
+            font-size: 17px;
+        }
+        
+        .faq-question i {
+            color: var(--primary);
+            transition: transform 0.3s;
+        }
+        
+        .faq-answer {
+            padding: 0 20px 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            color: var(--dark-gray);
+            font-size: 15px;
+            line-height: 1.6;
+        }
+        
+        .faq-item.active .faq-answer {
+            padding: 0 20px 20px;
+            max-height: 500px;
+        }
+        
+        .faq-item.active .faq-question i {
+            transform: rotate(180deg);
+        }
+        
+        /* Fixed CTA Section */
+        .cta {
+            text-align: center;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            position: relative;
+            overflow: hidden;
+            padding: 100px 0;
+        }
+        
+        .cta-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .cta h2 {
+            font-size: 42px;
+            font-weight: 800;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+        
+        .cta p {
+            font-size: 20px;
+            margin-bottom: 40px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            opacity: 0.95;
+        }
+        
+        .cta-button.light {
+            background: white;
+            color: var(--primary);
+            font-weight: 700;
+            padding: 16px 40px;
+            font-size: 18px;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            display: inline-block;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+        }
+        
+        .cta-button.light:hover {
+            background: rgba(255,255,255,0.9);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        }
+        
+        .urgent-note {
+            position: relative;
+            z-index: 1;
+            margin-top: 30px;
+            opacity: 0.95;
+            font-size: 18px;
+            background: rgba(255,255,255,0.15);
+            display: inline-block;
+            padding: 12px 25px;
+            border-radius: 50px;
+            font-weight: 600;
+        }
+        
+        .cta-pattern {
+            position: absolute;
+            opacity: 0.1;
+        }
+        
+        .cta-pattern-1 {
+            top: 20px;
+            left: 5%;
+            font-size: 120px;
+            transform: rotate(15deg);
+        }
+        
+        .cta-pattern-2 {
+            bottom: 30px;
+            right: 8%;
+            font-size: 100px;
+            transform: rotate(-10deg);
+        }
+        
+        /* Simplified Footer */
+        .simple-footer {
+            background: var(--darker);
+            color: white;
+            padding: 30px 0;
+            text-align: center;
+        }
+        
+        .simple-footer-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .footer-logo {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 700;
+            font-size: 20px;
+            color: white;
+            text-decoration: none;
+            margin-bottom: 15px;
+        }
+        
+        .footer-logo .logo-flame {
+            color: var(--accent);
+            font-size: 22px;
+        }
+        
+        .footer-text {
+            color: rgba(255,255,255,0.7);
+            font-size: 14px;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .footer-links a {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+        
+        .copyright {
+            color: rgba(255,255,255,0.5);
+            font-size: 13px;
+            margin-top: 25px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        @media (max-width: 768px) {
+            section {
+                padding: 60px 0;
+            }
+            
+            .hero h1 {
+                font-size: 32px;
+            }
+            
+            .hero p {
+                font-size: 16px;
+            }
+            
+            .section-header h2 {
+                font-size: 28px;
+            }
+            
+            .step {
+                min-width: 100%;
+                margin-bottom: 20px;
+            }
+            
+            .price {
+                font-size: 48px;
+            }
+            
+            .cta h2 {
+                font-size: 32px;
+            }
+            
+            .comparison-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .comparison-column:first-child {
+                border-right: none;
+                border-bottom: 1px solid var(--medium-gray);
+            }
+            
+            .timer {
+                flex-wrap: wrap;
+            }
+            
+            .pricing-card.featured {
+                transform: scale(1);
+            }
+            
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .urgent-note {
+                font-size: 16px;
+                padding: 10px 20px;
+            }
+
+            .video-container {
+                height: 250px;
+            }
+
+            .timer-unit {
+                min-width: 60px;
+                padding: 8px;
+            }
+
+            .timer-value {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-container">
+                <a href="#" class="logo">
+                    <div class="logo-flame">🔥</div>
+                    Viral Vault
+                </a>
+                
+                <a href="#pricing" class="cta-button">Get Early Access</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="urgency-badge">🚀 LAUNCHING IN 7 DAYS - LIMITED OFFER</div>
+            <h1>Find Top-Performing Reels on <span>Any Public Profile</span></h1>
+            <p>Viral Vault is a Chrome extension that analyzes public Instagram profiles, sorting Reels by views, likes, and comments — then exporting that data to CSV, Excel, or JSON.</p>
+            <a href="#pricing" class="cta-button">Get Lifetime Access for $29 →</a>
+            
+            <div class="hero-image">
+                <img src="https://images.unsplash.com/photo-1616469829941-c7200edec809?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Viral Vault analyzing a public profile">
+            </div>
+            
+            <div class="stats">
+                <div class="stat-item">
+                    <div class="stat-value">10x</div>
+                    <div class="stat-label">Faster Research</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">500</div>
+                    <div class="stat-label">Lifetime Licenses</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">97%</div>
+                    <div class="stat-label">Satisfaction</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section id="features" class="features">
+        <div class="container">
+            <div class="section-header">
+                <h2>Unlock Winning Content Strategies</h2>
+                <p>Viral Vault gives you the competitive intelligence to create high-performing content</p>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-filter"></i>
+                    </div>
+                    <h3>Sort by Engagement</h3>
+                    <p>Analyze any public Instagram profile and sort their Reels by views, likes, comments, and more.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-file-export"></i>
+                    </div>
+                    <h3>Export Data</h3>
+                    <p>Download engagement stats in CSV, Excel, or JSON formats for deeper analysis.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Track Competitors</h3>
+                    <p>Discover what's working for competitors and industry leaders.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Comparison Section with Screen Recordings -->
+    <section id="comparison" class="comparison">
+        <div class="container">
+            <div class="section-header">
+                <h2>Viral Vault vs. Manual Analysis</h2>
+                <p>Why waste hours when you can get insights in seconds?</p>
+            </div>
+            
+            <div class="comparison-container">
+                <div class="comparison-header">
+                    <h3>The Content Research Showdown</h3>
+                </div>
+                
+                <div class="comparison-grid">
+                    <div class="comparison-column">
+                        <div class="column-header">
+                            <div class="without-icon">
+                                <i class="fas fa-times"></i>
+                            </div>
+                            <h4>Manual Research</h4>
+                        </div>
+                        
+                        <div class="video-container">
+                            <video poster="https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" muted loop>
+                                <source src="https://assets.mixkit.co/videos/preview/mixkit-hands-using-smartphone-to-search-on-internet-34474-large.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                            <div class="play-button">
+                                <i class="fas fa-play"></i>
+                            </div>
+                        </div>
+                        
+                        <ul class="comparison-list without-list">
+                            <li>
+                                <i class="fas fa-clock"></i>
+                                <div>Hours wasted scrolling through profiles</div>
+                            </li>
+                            <li>
+                                <i class="fas fa-calculator"></i>
+                                <div>Manual comparisons to find top Reels</div>
+                            </li>
+                            <li>
+                                <i class="fas fa-file-excel"></i>
+                                <div>Spreadsheet hell copying data manually</div>
+                            </li>
+                            <li>
+                                <i class="fas fa-eye-slash"></i>
+                                <div>Missed patterns and trends</div>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="comparison-column">
+                        <div class="column-header">
+                            <div class="with-icon">
+                                <i class="fas fa-check"></i>
+                            </div>
+                            <h4>With Viral Vault</h4>
+                        </div>
+                        
+                        <div class="video-container">
+                            <video poster="https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" muted loop>
+                                <source src="https://assets.mixkit.co/videos/preview/mixkit-graph-with-data-on-a-screen-34471-large.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                            <div class="play-button">
+                                <i class="fas fa-play"></i>
+                            </div>
+                        </div>
+                        
+                        <ul class="comparison-list with-list">
+                            <li>
+                                <i class="fas fa-bolt"></i>
+                                <div>Instant sorting by views, likes, or comments</div>
+                            </li>
+                            <li>
+                                <i class="fas fa-download"></i>
+                                <div>One-click export to CSV/Excel/JSON</div>
+                            </li>
+                            <li>
+                                <i class="fas fa-chart-bar"></i>
+                                <div>Visual insights revealing content patterns</div>
+                            </li>
+                            <li>
+                                <i class="fas fa-trophy"></i>
+                                <div>Competitive advantage</div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section id="how-it-works" class="how-it-works">
+        <div class="container">
+            <div class="section-header">
+                <h2>How Viral Vault Works</h2>
+                <p>Simple setup, powerful insights in just 3 steps</p>
+            </div>
+            
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Install Extension</h3>
+                    <p>Add Viral Vault to Chrome with one click</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Visit a Public Profile</h3>
+                    <p>Go to any public Instagram profile</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Sort & Export</h3>
+                    <p>Filter Reels by metrics and export data</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Enhanced Pricing Section -->
+    <section id="pricing" class="pricing">
+        <div class="container">
+            <div class="section-header">
+                <h2>Exclusive Lifetime Offer</h2>
+                <p>Get permanent access before we switch to subscription pricing</p>
+            </div>
+            
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <h3 class="pricing-name">Monthly</h3>
+                        <p class="pricing-description">Flexible monthly access</p>
+                    </div>
+                    
+                    <div class="price">$9 <span>/month</span></div>
+                    <div class="price-note">Billed monthly</div>
+                    
+                    <ul class="pricing-features">
+                        <li><i class="fas fa-check"></i> Sort Reels by engagement metrics</li>
+                        <li><i class="fas fa-check"></i> Export to CSV format</li>
+                        <li><i class="fas fa-check"></i> Analyze up to 50 profiles/month</li>
+                        <li><i class="fas fa-times"></i> Priority support</li>
+                        <li><i class="fas fa-times"></i> Advanced analytics</li>
+                        <li><i class="fas fa-times"></i> Future updates included</li>
+                    </ul>
+                    
+                    <a href="#" class="cta-button">Get Monthly Plan</a>
+                    <div class="price-note" style="margin-top: 15px;">Available after launch</div>
+                </div>
+                
+                <div class="pricing-card featured">
+                    <div class="offer-badge">LIMITED TIME</div>
+                    
+                    <div class="pricing-header">
+                        <h3 class="pricing-name">Lifetime Access</h3>
+                        <p class="pricing-description">Best value - never pay again</p>
+                    </div>
+                    
+                    <div class="price">$29 <span>one-time</span></div>
+                    <div class="price-note">Save $79/year compared to annual</div>
+                    
+                    <div class="countdown">
+                        <h3>Offer ends in:</h3>
+                        <div class="timer">
+                            <div class="timer-unit">
+                                <div class="timer-value" id="days">07</div>
+                                <div class="timer-label">Days</div>
+                            </div>
+                            <div class="timer-unit">
+                                <div class="timer-value" id="hours">23</div>
+                                <div class="timer-label">Hours</div>
+                            </div>
+                            <div class="timer-unit">
+                                <div class="timer-value" id="minutes">59</div>
+                                <div class="timer-label">Minutes</div>
+                            </div>
+                            <div class="timer-unit">
+                                <div class="timer-value" id="seconds">59</div>
+                                <div class="timer-label">Seconds</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <ul class="pricing-features">
+                        <li><i class="fas fa-check"></i> <strong>All monthly features</strong></li>
+                        <li><i class="fas fa-check"></i> Export to CSV, Excel & JSON</li>
+                        <li><i class="fas fa-check"></i> Unlimited profile analysis</li>
+                        <li><i class="fas fa-check"></i> Priority support</li>
+                        <li><i class="fas fa-check"></i> Advanced analytics</li>
+                        <li><i class="fas fa-check"></i> All future updates included</li>
+                    </ul>
+                    
+                    <a href="#" class="cta-button">Get Lifetime Access</a>
+                    <div class="license-counter">Only 437 licenses remaining</div>
+                    
+                    <div class="guarantee">
+                        <i class="fas fa-shield-alt"></i>
+                        <div>30-day money-back guarantee</div>
+                    </div>
+                </div>
+                
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <h3 class="pricing-name">Annual</h3>
+                        <p class="pricing-description">Commit to annual savings</p>
+                    </div>
+                    
+                    <div class="price">$79 <span>/year</span></div>
+                    <div class="price-note">Save $29/year vs monthly</div>
+                    
+                    <ul class="pricing-features">
+                        <li><i class="fas fa-check"></i> Sort Reels by engagement metrics</li>
+                        <li><i class="fas fa-check"></i> Export to CSV & Excel</li>
+                        <li><i class="fas fa-check"></i> Analyze up to 500 profiles/year</li>
+                        <li><i class="fas fa-check"></i> Priority support</li>
+                        <li><i class="fas fa-check"></i> Basic analytics</li>
+                        <li><i class="fas fa-times"></i> Future updates included</li>
+                    </ul>
+                    
+                    <a href="#" class="cta-button">Get Annual Plan</a>
+                    <div class="price-note" style="margin-top: 15px;">Available after launch</div>
+                </div>
+            </div>
+            
+            <div class="value-comparison">
+                <div class="value-item">
+                    <div class="value-title">Lifetime Value</div>
+                    <div class="value-amount">$500+</div>
+                    <div>Potential savings over 5 years</div>
+                </div>
+                <div class="value-item">
+                    <div class="value-title">Cost Per Use</div>
+                    <div class="value-amount">$0.01</div>
+                    <div>After just 100 profile analyses</div>
+                </div>
+                <div class="value-item">
+                    <div class="value-title">ROI Guarantee</div>
+                    <div class="value-amount">10x</div>
+                    <div>Value compared to cost</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section id="testimonials" class="testimonials">
+        <div class="container">
+            <div class="section-header">
+                <h2>Trusted by Creators</h2>
+                <p>What early users are saying about Viral Vault</p>
+            </div>
+            
+            <div class="testimonials-grid">
+                <div class="testimonial">
+                    <div class="testimonial-header">
+                        <div class="testimonial-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div>
+                            <div class="testimonial-author">Sarah K.</div>
+                            <div class="testimonial-role">Content Creator</div>
+                        </div>
+                    </div>
+                    <div class="testimonial-content">
+                        "Viral Vault is my secret weapon for competitor research. I can now sort any public profile's Reels by views in seconds."
+                    </div>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+                
+                <div class="testimonial">
+                    <div class="testimonial-header">
+                        <div class="testimonial-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div>
+                            <div class="testimonial-author">Mark T.</div>
+                            <div class="testimonial-role">Digital Strategist</div>
+                        </div>
+                    </div>
+                    <div class="testimonial-content">
+                        "The ability to sort public profiles by engagement metrics has transformed our content strategy."
+                    </div>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+                
+                <div class="testimonial">
+                    <div class="testimonial-header">
+                        <div class="testimonial-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div>
+                            <div class="testimonial-author">Jessica L.</div>
+                            <div class="testimonial-role">Social Media Manager</div>
+                        </div>
+                    </div>
+                    <div class="testimonial-content">
+                        "Being able to sort Reels on any public profile by comments helped us identify engagement patterns."
+                    </div>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Enhanced FAQ Section -->
+    <section id="faq" class="faq">
+        <div class="container">
+            <div class="section-header">
+                <h2>Frequently Asked Questions</h2>
+                <p>Everything you need to know about Viral Vault</p>
+            </div>
+            
+            <div class="faq-container">
+                <div class="faq-item active">
+                    <div class="faq-question">
+                        How does Viral Vault work? <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        Viral Vault is a Chrome extension that adds analytics capabilities to Instagram. Once installed, when you visit any public Instagram profile, it analyzes their Reels and provides sorting options by views, likes, or comments directly on the profile page.
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        What data can I export? <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        You can export views, likes, shares, comments, engagement rate, and post date in CSV, Excel, or JSON formats. This allows for deeper analysis in tools like Google Sheets or Excel.
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Is this against Instagram/TikTok's terms? <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        Viral Vault only accesses publicly available data and doesn't require login credentials. We operate within platform guidelines while providing valuable analytics.
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        How does the lifetime access offer work? <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        The first 500 users get permanent access to Viral Vault for a one-time payment of $29. This includes all future updates and features. After the first 500, we'll switch to a subscription model.
+                    </div>
+                </div>
+                
+                <!-- New FAQ 1 -->
+                <div class="faq-item">
+                    <div class="faq-question">
+                        How often is the data updated? <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        Viral Vault provides real-time data whenever you visit a profile. The engagement metrics you see are the same as what's publicly visible on Instagram at that moment. For historical data, you can export and save your reports.
+                    </div>
+                </div>
+                
+                <!-- New FAQ 2 -->
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Is there a mobile version? <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        Currently, Viral Vault is available as a Chrome extension for desktop browsers. We're working on mobile solutions and plan to release mobile-compatible versions in the future. For now, we recommend using it on your computer for the best experience.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Fixed CTA Section -->
+    <section class="cta">
+        <div class="cta-pattern cta-pattern-1">🔥</div>
+        <div class="cta-pattern cta-pattern-2">🚀</div>
+        <div class="container">
+            <div class="cta-content">
+                <h2>Get Lifetime Access Before Time Runs Out!</h2>
+                <p>Join the first 500 creators and secure permanent access to Viral Vault for just $29</p>
+                <a href="#pricing" class="cta-button light">Get Viral Vault Now</a>
+                <p class="urgent-note">30-day money-back guarantee · Only 437 licenses left</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Simplified Footer -->
+    <footer class="simple-footer">
+        <div class="container">
+            <div class="simple-footer-content">
+                <a href="#" class="footer-logo">
+                    <div class="logo-flame">🔥</div>
+                    Viral Vault
+                </a>
+                
+                <p class="footer-text">
+                    The ultimate tool for analyzing public profile Reels. Save time, uncover insights, and create better content.
+                </p>
+                
+                <div class="footer-links">
+                    <a href="#features">Features</a>
+                    <a href="#pricing">Pricing</a>
+                    <a href="#faq">FAQ</a>
+                    <a href="#">Privacy</a>
+                    <a href="#">Terms</a>
+                </div>
+                
+                <p class="copyright">
+                    &copy; 2023 Viral Vault. All rights reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Countdown Timer
+        function updateCountdown() {
+            // Set launch date 7 days from now
+            const launchDate = new Date();
+            launchDate.setDate(launchDate.getDate() + 7);
+            
+            const now = new Date();
+            const diff = launchDate - now;
+            
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+            
+            document.getElementById('days').textContent = days.toString().padStart(2, '0');
+            document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+            document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+            document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+        }
+        
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+        
+        // FAQ Accordion
+        const faqItems = document.querySelectorAll('.faq-item');
+        
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question');
+            
+            question.addEventListener('click', () => {
+                // Close all other items
+                faqItems.forEach(otherItem => {
+                    if (otherItem !== item) {
+                        otherItem.classList.remove('active');
+                    }
+                });
+                
+                // Toggle current item
+                item.classList.toggle('active');
+            });
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    window.scrollTo({
+                        top: target.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // License counter animation
+        let licenses = 437;
+        const licenseElement = document.querySelector('.license-counter');
+        
+        setInterval(() => {
+            if (licenses > 400) {
+                licenses -= Math.floor(Math.random() * 2);
+                licenseElement.textContent = `Only ${licenses} licenses remaining`;
+            }
+        }, 30000);
+        
+        // Video play functionality
+        const playButtons = document.querySelectorAll('.play-button');
+        const videos = document.querySelectorAll('.video-container video');
+        
+        playButtons.forEach((button, index) => {
+            button.addEventListener('click', () => {
+                const video = videos[index];
+                if (video.paused) {
+                    video.play();
+                    button.innerHTML = '<i class="fas fa-pause"></i>';
+                } else {
+                    video.pause();
+                    button.innerHTML = '<i class="fas fa-play"></i>';
+                }
+            });
+        });
+        
+        videos.forEach(video => {
+            video.addEventListener('click', () => {
+                if (video.paused) {
+                    video.play();
+                    video.parentElement.querySelector('.play-button').innerHTML = '<i class="fas fa-pause"></i>';
+                } else {
+                    video.pause();
+                    video.parentElement.querySelector('.play-button').innerHTML = '<i class="fas fa-play"></i>';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
