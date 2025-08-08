@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy - Viral Vault</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #FF3E30;
+            --primary-dark: #E53930;
+            --primary-light: rgba(255, 62, 48, 0.1);
+            --dark: #1A1A1A;
+            --darker: #0F0F0F;
+            --light: #FFFFFF;
+            --light-gray: #F9FAFB;
+            --medium-gray: #E5E7EB;
+            --dark-gray: #6B7280;
+            --text: #111827;
+            --success: #10B981;
+            --urgent: #FF3E30;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text);
+            background-color: var(--light);
+            line-height: 1.6;
+            overflow-x: hidden;
+            font-size: 16px;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        section {
+            padding: 60px 0;
+        }
+        
+        /* Header */
+        header {
+            background-color: var(--light);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: 18px 0;
+            border-bottom: 1px solid var(--medium-gray);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 700;
+            font-size: 22px;
+            color: var(--dark);
+            text-decoration: none;
+        }
+        
+        .logo-svg {
+            width: 28px;
+            height: 28px;
+        }
+        
+        .cta-button {
+            background: var(--primary);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            font-size: 16px;
+            display: inline-block;
+            transition: all 0.2s ease;
+            border: none;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cta-button:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 62, 48, 0.3);
+        }
+        
+        /* Privacy Page Styles */
+        .privacy-header {
+            text-align: center;
+            padding: 60px 0 40px;
+            background: linear-gradient(135deg, #f8f9fc 0%, #ffffff 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .privacy-header::before {
+            content: "";
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: linear-gradient(120deg, rgba(255, 62, 48, 0.1) 0%, rgba(255, 62, 48, 0) 70%);
+            top: -150px;
+            right: -150px;
+            z-index: 0;
+        }
+        
+        .privacy-header h1 {
+            font-size: 42px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: var(--dark);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .privacy-header p {
+            font-size: 18px;
+            color: var(--dark-gray);
+            max-width: 700px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .privacy-content {
+            background: white;
+            border-radius: 16px;
+            padding: 50px;
+            margin-top: 40px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            border: 1px solid var(--medium-gray);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .privacy-section {
+            margin-bottom: 40px;
+        }
+        
+        .privacy-section h2 {
+            font-size: 24px;
+            color: var(--primary);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--primary-light);
+        }
+        
+        .privacy-section h3 {
+            font-size: 20px;
+            margin: 25px 0 15px;
+            color: var(--dark);
+        }
+        
+        .privacy-section p {
+            margin-bottom: 15px;
+            color: var(--dark-gray);
+            line-height: 1.7;
+        }
+        
+        .privacy-section ul {
+            margin: 15px 0 25px 25px;
+        }
+        
+        .privacy-section li {
+            margin-bottom: 10px;
+            position: relative;
+            padding-left: 20px;
+        }
+        
+        .privacy-section li:before {
+            content: "•";
+            color: var(--primary);
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        
+        .highlight-box {
+            background: var(--primary-light);
+            border-left: 4px solid var(--primary);
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .contact-info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-top: 40px;
+            background: var(--light-gray);
+            padding: 30px;
+            border-radius: 12px;
+        }
+        
+        .contact-card {
+            flex: 1;
+            min-width: 250px;
+        }
+        
+        .contact-card h3 {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+            font-size: 18px;
+            color: var(--dark);
+        }
+        
+        .contact-card i {
+            color: var(--primary);
+            font-size: 20px;
+        }
+        
+        .contact-card p {
+            color: var(--dark-gray);
+            line-height: 1.6;
+        }
+        
+        /* Data Collection Table */
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(0,0,0,0.05);
+        }
+        
+        .data-table th {
+            background-color: var(--primary);
+            color: white;
+            text-align: left;
+            padding: 15px;
+            font-weight: 600;
+        }
+        
+        .data-table td {
+            padding: 15px;
+            border-bottom: 1px solid var(--medium-gray);
+        }
+        
+        .data-table tr:nth-child(even) {
+            background-color: var(--light-gray);
+        }
+        
+        .data-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        /* Footer */
+        .simple-footer {
+            background: var(--darker);
+            color: white;
+            padding: 30px 0;
+            text-align: center;
+        }
+        
+        .simple-footer-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .footer-logo {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 700;
+            font-size: 20px;
+            color: white;
+            text-decoration: none;
+            margin-bottom: 15px;
+        }
+        
+        .footer-text {
+            color: rgba(255,255,255,0.7);
+            font-size: 14px;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .footer-links a {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+        
+        .copyright {
+            color: rgba(255,255,255,0.5);
+            font-size: 13px;
+            margin-top: 25px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .privacy-header h1 {
+                font-size: 32px;
+            }
+            
+            .privacy-header p {
+                font-size: 16px;
+            }
+            
+            .privacy-content {
+                padding: 25px;
+            }
+            
+            .privacy-section h2 {
+                font-size: 22px;
+            }
+            
+            .privacy-section h3 {
+                font-size: 18px;
+            }
+            
+            .contact-info {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .data-table {
+                display: block;
+                overflow-x: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-container">
+                <a href="index.html" class="logo">
+                    <div class="logo-svg">
+                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="28" zoomAndPan="magnify" viewBox="0 0 375 374.999991" height="28" preserveAspectRatio="xMidYMid meet" version="1.2"><defs/><g id="69782c2cd5"><path style=" stroke:none;fill-rule:nonzero;fill:#ff3131;fill-opacity:1;" d="M 112.019531 175.152344 L 101.230469 182.347656 L 101.230469 167.4375 C 92.703125 167.4375 85.800781 174.34375 85.800781 182.867188 C 85.800781 184.476562 86.046875 186.035156 86.511719 187.496094 L 81.171875 187.496094 C 81.171875 197.714844 89.464844 206.007812 99.6875 206.007812 C 109.90625 206.007812 118.199219 197.714844 118.199219 187.496094 C 118.199219 182.441406 115.769531 177.96875 112.019531 175.152344 Z M 99.6875 201.378906 C 96.277344 201.378906 93.515625 198.617188 93.515625 195.207031 C 93.515625 191.800781 96.277344 189.039062 99.6875 189.039062 L 99.6875 195.207031 L 104.824219 191.785156 C 105.480469 192.761719 105.859375 193.945312 105.859375 195.207031 C 105.859375 198.617188 103.097656 201.378906 99.6875 201.378906 Z M 99.6875 201.378906 "/><g style="fill:#000000;fill-opacity:1;"><g transform="translate(126.676182, 201.555433)"><path style="stroke:none" d="M 9.875 0 L -0.875 -25.625 L 5.71875 -25.625 L 12.171875 -8.796875 L 18.640625 -25.625 L 25.21875 -25.625 L 14.46875 0 Z M 9.875 0 "/></g></g><g style="fill:#000000;fill-opacity:1;"><g transform="translate(148.103182, 201.555433)"><path style="stroke:none" d="M 2.390625 -24.8125 C 3.035156 -25.457031 3.800781 -25.78125 4.6875 -25.78125 C 5.582031 -25.78125 6.347656 -25.457031 6.984375 -24.8125 C 7.628906 -24.175781 7.953125 -23.410156 7.953125 -22.515625 C 7.953125 -21.628906 7.628906 -20.863281 6.984375 -20.21875 C 6.347656 -19.582031 5.582031 -19.265625 4.6875 -19.265625 C 3.800781 -19.265625 3.035156 -19.582031 2.390625 -20.21875 C 1.742188 -20.863281 1.421875 -21.628906 1.421875 -22.515625 C 1.421875 -23.410156 1.742188 -24.175781 2.390625 -24.8125 Z M 1.859375 -15.9375 L 1.859375 0 L 7.359375 0 L 7.359375 -15.9375 Z M 1.859375 -15.9375 "/></g></g><g style="fill:#000000;fill-opacity:1;"><g transform="translate(154.561611, 201.555433)"><path style="stroke:none" d="M 1.859375 0 L 1.859375 -15.9375 L 7.359375 -15.9375 L 7.359375 -13.640625 L 7.421875 -13.640625 C 7.460938 -13.722656 7.53125 -13.828125 7.625 -13.953125 C 7.71875 -14.078125 7.921875 -14.289062 8.234375 -14.59375 C 8.546875 -14.90625 8.875 -15.1875 9.21875 -15.4375 C 9.570312 -15.6875 10.03125 -15.910156 10.59375 -16.109375 C 11.15625 -16.304688 11.722656 -16.40625 12.296875 -16.40625 C 12.898438 -16.40625 13.488281 -16.320312 14.0625 -16.15625 C 14.644531 -15.988281 15.070312 -15.820312 15.34375 -15.65625 L 15.78125 -15.40625 L 13.484375 -10.75 C 12.796875 -11.332031 11.84375 -11.625 10.625 -11.625 C 9.957031 -11.625 9.382812 -11.476562 8.90625 -11.1875 C 8.4375 -10.894531 8.101562 -10.539062 7.90625 -10.125 C 7.707031 -9.707031 7.566406 -9.351562 7.484375 -9.0625 C 7.398438 -8.78125 7.359375 -8.554688 7.359375 -8.390625 L 7.359375 0 Z M 1.859375 0 "/></g></g><g style="fill:#000000;fill-opacity:1;"><g transform="translate(167.106849, 201.555433)"><path style="stroke:none" d="M 2.953125 -1.96875 C 1.460938 -3.59375 0.71875 -5.585938 0.71875 -7.953125 C 0.71875 -10.316406 1.460938 -12.316406 2.953125 -13.953125 C 4.441406 -15.585938 6.335938 -16.40625 8.640625 -16.40625 C 10.742188 -16.40625 12.484375 -15.738281 13.859375 -14.40625 L 13.859375 -15.9375 L 19.359375 -15.9375 L 19.359375 0 L 13.921875 0 L 13.921875 -1.796875 L 13.859375 -1.796875 C 12.484375 -0.285156 10.742188 0.46875 8.640625 0.46875 C 6.335938 0.46875 4.441406 -0.34375 2.953125 -1.96875 Z M 7.625 -10.640625 C 6.90625 -9.941406 6.546875 -9.046875 6.546875 -7.953125 C 6.546875 -6.859375 6.890625 -5.960938 7.578125 -5.265625 C 8.265625 -4.566406 9.164062 -4.21875 10.28125 -4.21875 C 11.351562 -4.21875 12.238281 -4.570312 12.9375 -5.28125 C 13.632812 -5.988281 13.984375 -6.878906 13.984375 -7.953125 C 13.984375 -9.046875 13.625 -9.941406 12.90625 -10.640625 C 12.1875 -11.347656 11.3125 -11.703125 10.28125 -11.703125 C 9.226562 -11.703125 8.34375 -11.347656 7.625 -10.640625 Z M 7.625 -10.640625 "/></g></g><g style="fill:#000000;fill-opacity:1;"><g transform="translate(185.397283, 201.555433)"><path style="stroke:none" d="M 1.859375 0 L 1.859375 -26.71875 L 7.359375 -26.71875 L 7.359375 0 Z M 1.859375 0 "/></g></g><g style="fill:#000000;fill-opacity:1;"><g transform="translate(191.700433, 201.555433)"><path style="stroke:none" d=""/></g></g><g style="fill:#000000;fill-opacity:1;"><g transform="translate(197.258259, 201.555433)"><path style="stroke:none" d="M 9.875 0 L -0.875 -25.625 L 5.71875 -25.625 L 12.171875 -8.796875 L 18.640625 -25.625 L 25.21875 -25.625 L 14.46875 0 Z M 9.875 0 "/></g></g><g style="fill:#000000;fill-opacity:1;"><g transform="translate(218.685259, 201.555433)"><path style="stroke:none" d="M 2.953125 -1.96875 C 1.460938 -3.59375 0.71875 -5.585938 0.71875 -7.953125 C 0.71875 -10.316406 1.460938 -12.316406 2.953125 -13.953125 C 4.441406 -15.585938 6.335938 -16.40625 8.640625 -16.40625 C 10.742188 -16.40625 12.484375 -15.738281 13.859375 -14.40625 L 13.859375 -15.9375 L 19.359375 -15.9375 L 19.359375 0 L 13.921875 0 L 13.921875 -1.796875 L 13.859375 -1.796875 C 12.484375 -0.285156 10.742188 0.46875 8.640625 0.46875 C 6.335938 0.46875 4.441406 -0.34375 2.953125 -1.96875 Z M 7.625 -10.640625 C 6.90625 -9.941406 6.546875 -9.046875 6.546875 -7.953125 C 6.546875 -6.859375 6.890625 -5.960938 7.578125 -5.265625 C 8.265625 -4.566406 9.164062 -4.21875 10.28125 -4.21875 C 11.351562 -4.21875 12.238281 -4.570312 12.9375 -5.28125 C 13.632812 -5.988281 13.984375 -6.878906 13.984375 -7.953125 C 13.984375 -9.046875 13.625 -9.941406 12.90625 -10.640625 C 12.1875 -11.347656 11.3125 -11.703125 10.28125 -11.703125 C 9.226562 -11.703125 8.34375 -11.347656 7.625 -10.640625 Z M 7.625 -10.640625 "/></g></g><g style="fill:#000000;fill-opacity:1;"><g transform="translate(236.975694, 201.555433)"><path style="stroke:none" d="M 7.046875 -15.9375 L 7.046875 -8.359375 C 7.046875 -6.785156 7.285156 -5.664062 7.765625 -5 C 8.242188 -4.332031 9.050781 -4 10.1875 -4 C 11.320312 -4 12.128906 -4.332031 12.609375 -5 C 13.085938 -5.664062 13.328125 -6.785156 13.328125 -8.359375 L 13.328125 -15.9375 L 18.828125 -15.9375 L 18.828125 -7.015625 C 18.828125 -4.367188 18.132812 -2.457031 16.75 -1.28125 C 15.375 -0.113281 13.1875 0.46875 10.1875 0.46875 C 7.1875 0.46875 4.992188 -0.113281 3.609375 -1.28125 C 2.234375 -2.457031 1.546875 -4.367188 1.546875 -7.015625 L 1.546875 -15.9375 Z M 7.046875 -15.9375 "/></g></g><g style="fill:#000000;fill-opacity:1;"><g transform="translate(254.427636, 201.555433)"><path style="stroke:none" d="M 1.859375 0 L 1.859375 -26.71875 L 7.359375 -26.71875 L 7.359375 0 Z M 1.859375 0 "/></g></g><g style="fill:#000000;fill-opacity:1;"><g transform="translate(260.730786, 201.555433)"><path style="stroke:none" d="M 2.796875 -15.9375 L 2.796875 -21.875 L 8.296875 -21.875 L 8.296875 -15.9375 L 11.65625 -15.9375 L 11.65625 -11.734375 L 8.296875 -11.734375 L 8.296875 -6.671875 C 8.296875 -5.203125 8.707031 -4.46875 9.53125 -4.46875 C 9.738281 -4.46875 9.957031 -4.507812 10.1875 -4.59375 C 10.414062 -4.675781 10.59375 -4.757812 10.71875 -4.84375 L 10.90625 -4.96875 L 12.265625 -0.53125 C 11.085938 0.132812 9.742188 0.46875 8.234375 0.46875 C 7.191406 0.46875 6.296875 0.285156 5.546875 -0.078125 C 4.804688 -0.441406 4.242188 -0.925781 3.859375 -1.53125 C 3.484375 -2.144531 3.210938 -2.785156 3.046875 -3.453125 C 2.878906 -4.128906 2.796875 -4.851562 2.796875 -5.625 L 2.796875 -11.734375 L 0.5 -11.734375 L 0.5 -15.9375 Z M 2.796875 -15.9375 "/></g></g></g></svg>
+                    </div>
+                    Viral Vault
+                </a>
+                
+                <a href="index.html" class="cta-button">Back to Home</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Privacy Header -->
+    <section class="privacy-header">
+        <div class="container">
+            <h1>Privacy Policy</h1>
+            <p>Last Updated: August 8, 2025</p>
+        </div>
+    </section>
+
+    <!-- Privacy Content -->
+    <section class="privacy-content-section">
+        <div class="container">
+            <div class="privacy-content">
+                <div class="privacy-section">
+                    <h2>Introduction</h2>
+                    <p>Welcome to Viral Vault! This Privacy Policy explains how we collect, use, and protect your information when you use our Chrome extension ("Extension") and related services ("Services").</p>
+                    
+                    <div class="highlight-box">
+                        <p><strong>Important:</strong> Viral Vault only accesses publicly available Instagram data. We never access private profiles or require your Instagram login credentials.</p>
+                    </div>
+                    
+                    <p>By using our Services, you agree to the collection and use of information in accordance with this policy.</p>
+                </div>
+                
+                <div class="privacy-section">
+                    <h2>Information We Collect</h2>
+                    
+                    <p>We collect several types of information for various purposes to provide and improve our Services:</p>
+                    
+                    <h3>Data You Provide</h3>
+                    <ul>
+                        <li><strong>Account Information:</strong> When you purchase a license, we collect your name, email address, and payment details.</li>
+                        <li><strong>Communication Data:</strong> Information you provide when contacting our support team.</li>
+                    </ul>
+                    
+                    <h3>Data We Collect Automatically</h3>
+                    <ul>
+                        <li><strong>Extension Usage:</strong> Information about how you interact with our Extension, such as features used and profiles analyzed.</li>
+                        <li><strong>Technical Data:</strong> Browser type, version, operating system, and device information.</li>
+                        <li><strong>Performance Data:</strong> Crash reports and performance metrics to improve our Services.</li>
+                    </ul>
+                    
+                    <h3>Public Instagram Data</h3>
+                    <p>When you use our Extension to analyze public Instagram profiles, we process:</p>
+                    <ul>
+                        <li>Public profile information (username, bio, follower count)</li>
+                        <li>Public Reels engagement metrics (views, likes, comments)</li>
+                        <li>Public content information (captions, hashtags)</li>
+                    </ul>
+                </div>
+                
+                <div class="privacy-section">
+                    <h2>How We Use Your Information</h2>
+                    
+                    <p>We use the collected information for various purposes:</p>
+                    
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Purpose</th>
+                                <th>Data Used</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Provide and maintain our Services</td>
+                                <td>Account information, extension usage data</td>
+                            </tr>
+                            <tr>
+                                <td>Process transactions and manage licenses</td>
+                                <td>Payment information, account details</td>
+                            </tr>
+                            <tr>
+                                <td>Improve and optimize our Services</td>
+                                <td>Usage data, technical data, performance data</td>
+                            </tr>
+                            <tr>
+                                <td>Provide customer support</td>
+                                <td>Account information, communication data</td>
+                            </tr>
+                            <tr>
+                                <td>Communicate with you about updates and offers</td>
+                                <td>Email address, account information</td>
+                            </tr>
+                            <tr>
+                                <td>Analyze usage patterns to enhance functionality</td>
+                                <td>Aggregated usage data</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="privacy-section">
+                    <h2>Data Sharing and Disclosure</h2>
+                    
+                    <p>We do not sell your personal information. We may share your data in the following situations:</p>
+                    
+                    <h3>Service Providers</h3>
+                    <p>We may share information with third-party service providers to:</p>
+                    <ul>
+                        <li>Process payments</li>
+                        <li>Provide customer support</li>
+                        <li>Perform data analysis</li>
+                        <li>Monitor and analyze Service usage</li>
+                    </ul>
+                    
+                    <h3>Legal Requirements</h3>
+                    <p>We may disclose your information when required by law or in response to valid requests by public authorities.</p>
+                    
+                    <h3>Business Transfers</h3>
+                    <p>In the event of a merger, acquisition, or sale of assets, your information may be transferred.</p>
+                </div>
+                
+                <div class="privacy-section">
+                    <h2>Data Security</h2>
+                    
+                    <p>We implement appropriate technical and organizational measures to protect your information:</p>
+                    <ul>
+                        <li>Encryption of sensitive data in transit and at rest</li>
+                        <li>Regular security audits and vulnerability testing</li>
+                        <li>Access controls to limit internal access to your data</li>
+                        <li>Secure payment processing through PCI-compliant providers</li>
+                    </ul>
+                    
+                    <p>While we strive to protect your personal information, no method of transmission over the Internet is 100% secure.</p>
+                </div>
+                
+                <div class="privacy-section">
+                    <h2>Your Data Rights</h2>
+                    
+                    <p>Depending on your location, you may have the following rights regarding your personal information:</p>
+                    
+                    <ul>
+                        <li><strong>Access:</strong> Request a copy of your personal data</li>
+                        <li><strong>Correction:</strong> Request correction of inaccurate data</li>
+                        <li><strong>Deletion:</strong> Request deletion of your personal data</li>
+                        <li><strong>Objection:</strong> Object to processing of your personal data</li>
+                        <li><strong>Portability:</strong> Request transfer of your data to another service</li>
+                    </ul>
+                    
+                    <p>To exercise these rights, please contact us at privacy@getviralvault.com.</p>
+                </div>
+                
+                <div class="privacy-section">
+                    <h2>Cookies and Tracking</h2>
+                    
+                    <p>Our website uses cookies to:</p>
+                    <ul>
+                        <li>Remember your preferences</li>
+                        <li>Analyze website traffic</li>
+                        <li>Improve user experience</li>
+                    </ul>
+                    
+                    <p>You can control cookies through your browser settings. Note that disabling cookies may affect website functionality.</p>
+                </div>
+                
+                <div class="privacy-section">
+                    <h2>Changes to This Policy</h2>
+                    
+                    <p>We may update our Privacy Policy from time to time. We will notify you of any changes by posting the new policy on this page and updating the "Last Updated" date.</p>
+                    
+                    <p>We recommend reviewing this policy periodically for any changes.</p>
+                </div>
+                
+                <div class="privacy-section">
+                    <h2>Contact Us</h2>
+                    
+                    <p>If you have any questions about this Privacy Policy, please contact us:</p>
+                    
+                    <div class="contact-info">
+                        <div class="contact-card">
+                            <h3><i class="fas fa-envelope"></i> Privacy Inquiries</h3>
+                            <p>privacy@getviralvault.com</p>
+                            <p>Response time: 48 business hours</p>
+                        </div>
+                        
+                        <div class="contact-card">
+                            <h3><i class="fas fa-headset"></i> General Support</h3>
+                            <p>support@getviralvault.com</p>
+                            <p>Help Center: help.getviralvault.com</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="simple-footer">
+        <div class="container">
+            <div class="simple-footer-content">
+                <a href="index.html" class="footer-logo">
+                    <div class="logo-svg">
+                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="22" zoomAndPan="magnify" viewBox="0 0 375 374.999991" height="22" preserveAspectRatio="xMidYMid meet" version="1.2"><defs/><g id="69782c2cd5"><path style=" stroke:none;fill-rule:nonzero;fill:#ff3131;fill-opacity:1;" d="M 112.019531 175.152344 L 101.230469 182.347656 L 101.230469 167.4375 C 92.703125 167.4375 85.800781 174.34375 85.800781 182.867188 C 85.800781 184.476562 86.046875 186.035156 86.511719 187.496094 L 81.171875 187.496094 C 81.171875 197.714844 89.464844 206.007812 99.6875 206.007812 C 109.90625 206.007812 118.199219 197.714844 118.199219 187.496094 C 118.199219 182.441406 115.769531 177.96875 112.019531 175.152344 Z M 99.6875 201.378906 C 96.277344 201.378906 93.515625 198.617188 93.515625 195.207031 C 93.515625 191.800781 96.277344 189.039062 99.6875 189.039062 L 99.6875 195.207031 L 104.824219 191.785156 C 105.480469 192.761719 105.859375 193.945312 105.859375 195.207031 C 105.859375 198.617188 103.097656 201.378906 99.6875 201.378906 Z M 99.6875 201.378906 "/><g style="fill:#000000;fill-opacity:1;"><g transform="translate(126.676182, 201.555433)"><path style="stroke:none" d="M 9.875 0 L -0.875 -25.625 L 5.71875 -25.625 L 12.171875 -8.796875 L 18.640625 -25.625 L 25.21875 -25.625 L 14.46875 0 Z M 9.875 0 "/></g></g><g style="fill:#000000;fill-opacity:1;"><g transform="translate(148.103182, 201.555433)"><path style="stroke:none" d="M 2.390625 -24.8125 C 3.035156 -25.457031 3.800781 -25.78125 4.6875 -25.78125 C 5.582031 -25.78125 6.347656 -25.457031 6.984375 -24.8125 C 7.628906 -24.175781 7.953125 -23.410156 7.953125 -22.515625 C 7.953125 -21.628906 7.628906 -20.863281 6.984375 -20.21875 C 6.347656 -19.582031 5.582031 -19.265625 4.6875 -19.265625 C 3.800781 -19.265625 3.035156 -19.582031 2.390625 -20.21875 C 1.742188 -20.863281 1.421875 -21.628906 1.421875 -22.515625 C 1.421875 -23.410156 1.742188 -24.175781 2.390625 -24.8125 Z M 1.859375 -15.9375 L 1.859375 0 L 7.359375 0 L 7.359375 -15.9375 Z M 1.859375 -15.9375 "/></g></g><g style="fill:#000000;fill-opacity:1;"><g transform="translate(154.561611, 201.555433)"><path style="stroke:none" d="M 1.859375 0 L 1.859375 -15.9375 L 7.359375 -15.9375 L 7.359375 -13.640625 L 7.421875 -13.640625 C 7.460938 -13.722656 7.53125 -13.828125 7.625 -13.953125 C 7.71875 -14.078125 7.921875 -14.289062 8.234375 -14.59375 C 8.546875 -14.90625 8.875 -15.1875 9.21875 -15.4375 C 9.570312 -15.6875 10.03125 -15.910156 10.59375 -16.109375 C 11.15625 -16.304688 11.722656 -16.40625 12.296875 -16.40625 C 12.898438 -16.40625 13.488281 -16.320312 14.0625 -16.15625 C 14.644531 -15.988281 15.070312 -15.820312 15.34375 -15.65625 L 15.78125 -15.40625 L 13.484375 -10.75 C 12.796875 -11.332031 11.84375 -11.625 10.625 -11.625 C 9.957031 -11.625 9.382812 -11.476562 8.90625 -11.1875 C 8.4375 -10.894531 8.101562 -10.539062 7.90625 -10.125 C 7.707031 -9.707031 7.566406 -9.351562 7.484375 -9.0625 C 7.398438 -8.78125 7.359375 -8.554688 7.359375 -8.390625 L 7.359375 0 Z M 1.859375 0 "/></g></g><g style="fill:#000000;fill-opacity:1;"><g transform="translate(167.106849, 201.555433)"><path style="stroke:none" d="M 2.953125 -1.96875 C 1.460938 -3.59375 0.71875 -5.585938 0.71875 -7.953125 C 0.71875 -10.316406 1.460938 -12.316406 2.953125 -13.953125 C 4.441406 -15.585938 6.335938 -16.40625 8.640625 -16.40625 C 10.742188 -16.40625 12.484375 -15.738281 13.859375 -14.40625 L 13.859375 -15.9375 L 19.359375 -15.9375 L 19.359375 0 L 13.921875 0 L 13.921875 -1.796875 L 13.859375 -1.796875 C 12.484375 -0.285156 10.742188 0.46875 8.640625 0.46875 C 6.335938 0.46875 4.441406 -0.34375 2.953125 -1.96875 Z M 7.625 -10.640625 C 6.90625 -9.941406 6.546875 -9.046875 6.546875 -7.953125 C 6.546875 -6.859375 6.890625 -5.960938 7.578125 -5.265625 C 8.265625 -4.566406 9.164062 -4.21875 10.28125 -4.21875 C 11.351562 -4.21875 12.238281 -4.570312 12.9375 -5.28125 C 13.632812 -5.988281 13.984375 -6.878906 13.984375 -7.953125 C 13.984375 -9.046875 13.625 -9.941406 12.90625 -10.640625 C 12.1875 -11.347656 11.3125 -11.703125 10.28125 -11.703125 C 9.226562 -11.703125 8.34375 -11.347656 7.625 -10.640625 Z M 7.625 -10.640625 "/></g></g><g style="fill:#000000;fill-opacity:1;"><g transform="translate(185.397283, 201.555433)"><path style="stroke:none" d="M 1.859375 0 L 1.859375 -26.71875 L 7.359375 -26.71875 L 7.359375 0 Z M 1.859375 0 "/></g></g><g style="fill:#000000;fill-opacity:1;"><g transform="translate(191.700433, 201.555433)"><path style="stroke:none" d=""/></g></g><g style="fill:#000000;fill-opacity:1;"><g transform="translate(197.258259, 201.555433)"><path style="stroke:none" d="M 9.875 0 L -0.875 -25.625 L 5.71875 -25.625 L 12.171875 -8.796875 L 18.640625 -25.625 L 25.21875 -25.625 L 14.46875 0 Z M 9.875 0 "/></g></g><g style="fill:#000000;fill-opacity:1;"><g transform="translate(218.685259, 201.555433)"><path style="stroke:none" d="M 2.953125 -1.96875 C 1.460938 -3.59375 0.71875 -5.585938 0.71875 -7.953125 C 0.71875 -10.316406 1.460938 -12.316406 2.953125 -13.953125 C 4.441406 -15.585938 6.335938 -16.40625 8.640625 -16.40625 C 10.742188 -16.40625 12.484375 -15.738281 13.859375 -14.40625 L 13.859375 -15.9375 L 19.359375 -15.9375 L 19.359375 0 L 13.921875 0 L 13.921875 -1.796875 L 13.859375 -1.796875 C 12.484375 -0.285156 10.742188 0.46875 8.640625 0.46875 C 6.335938 0.46875 4.441406 -0.34375 2.953125 -1.96875 Z M 7.625 -10.640625 C 6.90625 -9.941406 6.546875 -9.046875 6.546875 -7.953125 C 6.546875 -6.859375 6.890625 -5.960938 7.578125 -5.265625 C 8.265625 -4.566406 9.164062 -4.21875 10.28125 -4.21875 C 11.351562 -4.21875 12.238281 -4.570312 12.9375 -5.28125 C 13.632812 -5.988281 13.984375 -6.878906 13.984375 -7.953125 C 13.984375 -9.046875 13.625 -9.941406 12.90625 -10.640625 C 12.1875 -11.347656 11.3125 -11.703125 10.28125 -11.703125 C 9.226562 -11.703125 8.34375 -11.347656 7.625 -10.640625 Z M 7.625 -10.640625 "/></g></g><g style="fill:#000000;fill-opacity:1;"><g transform="translate(236.975694, 201.555433)"><path style="stroke:none" d="M 7.046875 -15.9375 L 7.046875 -8.359375 C 7.046875 -6.785156 7.285156 -5.664062 7.765625 -5 C 8.242188 -4.332031 9.050781 -4 10.1875 -4 C 11.320312 -4 12.128906 -4.332031 12.609375 -5 C 13.085938 -5.664062 13.328125 -6.785156 13.328125 -8.359375 L 13.328125 -15.9375 L 18.828125 -15.9375 L 18.828125 -7.015625 C 18.828125 -4.367188 18.132812 -2.457031 16.75 -1.28125 C 15.375 -0.113281 13.1875 0.46875 10.1875 0.46875 C 7.1875 0.46875 4.992188 -0.113281 3.609375 -1.28125 C 2.234375 -2.457031 1.546875 -4.367188 1.546875 -7.015625 L 1.546875 -15.9375 Z M 7.046875 -15.9375 "/></g></g><g style="fill:#000000;fill-opacity:1;"><g transform="translate(254.427636, 201.555433)"><path style="stroke:none" d="M 1.859375 0 L 1.859375 -26.71875 L 7.359375 -26.71875 L 7.359375 0 Z M 1.859375 0 "/></g></g><g style="fill:#000000;fill-opacity:1;"><g transform="translate(260.730786, 201.555433)"><path style="stroke:none" d="M 2.796875 -15.9375 L 2.796875 -21.875 L 8.296875 -21.875 L 8.296875 -15.9375 L 11.65625 -15.9375 L 11.65625 -11.734375 L 8.296875 -11.734375 L 8.296875 -6.671875 C 8.296875 -5.203125 8.707031 -4.46875 9.53125 -4.46875 C 9.738281 -4.46875 9.957031 -4.507812 10.1875 -4.59375 C 10.414062 -4.675781 10.59375 -4.757812 10.71875 -4.84375 L 10.90625 -4.96875 L 12.265625 -0.53125 C 11.085938 0.132812 9.742188 0.46875 8.234375 0.46875 C 7.191406 0.46875 6.296875 0.285156 5.546875 -0.078125 C 4.804688 -0.441406 4.242188 -0.925781 3.859375 -1.53125 C 3.484375 -2.144531 3.210938 -2.785156 3.046875 -3.453125 C 2.878906 -4.128906 2.796875 -4.851562 2.796875 -5.625 L 2.796875 -11.734375 L 0.5 -11.734375 L 0.5 -15.9375 Z M 2.796875 -15.9375 "/></g></g></g></svg>
+                    </div>
+                    Viral Vault
+                </a>
+                
+                <p class="footer-text">
+                    The ultimate tool for analyzing public profile Reels. Save time, uncover insights, and create better content.
+                </p>
+                
+                <div class="footer-links">
+                    <a href="index.html#features">Features</a>
+                    <a href="index.html#pricing">Pricing</a>
+                    <a href="index.html#faq">FAQ</a>
+                    <a href="privacy-policy.html">Privacy</a>
+                    <a href="terms-and-conditions.html">Terms</a>
+                </div>
+                
+                <p class="copyright">
+                    &copy; 2025 Viral Vault. All rights reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Simple accordion for privacy sections on mobile
+        if (window.innerWidth < 768) {
+            const privacySections = document.querySelectorAll('.privacy-section');
+            
+            privacySections.forEach(section => {
+                const heading = section.querySelector('h2');
+                const content = section.querySelectorAll('h3, p, ul, .highlight-box, table');
+                
+                // Hide content initially
+                content.forEach(el => {
+                    el.style.display = 'none';
+                });
+                
+                // Show first section
+                if (section === privacySections[0]) {
+                    content.forEach(el => {
+                        el.style.display = 'block';
+                    });
+                }
+                
+                // Toggle on click
+                heading.addEventListener('click', () => {
+                    content.forEach(el => {
+                        if (el.style.display === 'none') {
+                            el.style.display = 'block';
+                        } else {
+                            el.style.display = 'none';
+                        }
+                    });
+                });
+            });
+        }
+    </script>
+</body>
+</html>
