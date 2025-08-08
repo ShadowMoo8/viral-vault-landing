@@ -487,66 +487,14 @@
             justify-content: center;
         }
         
-        .video-container video {
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
-            object-fit: cover;
-        }
-        
-        .play-button {
-            position: absolute;
-            width: 60px;
-            height: 60px;
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 2;
-            backdrop-filter: blur(5px);
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-        
-        .play-button:hover {
-            transform: scale(1.1);
-            background: rgba(255, 255, 255, 0.3);
-        }
-        
-        .play-button i {
-            color: white;
-            font-size: 28px;
-        }
-        
-        .comparison-list {
-            list-style: none;
-        }
-        
-        .comparison-list li {
-            padding: 15px 0;
-            border-bottom: 1px solid var(--medium-gray);
-            display: flex;
-            align-items: flex-start;
-            gap: 12px;
-            font-size: 16px;
-        }
-        
-        .comparison-list li:last-child {
-            border-bottom: none;
-        }
-        
-        .comparison-list i {
-            font-size: 20px;
-            margin-top: 4px;
-            flex-shrink: 0;
-        }
-        
-        .without-list i {
-            color: var(--urgent);
-        }
-        
-        .with-list i {
-            color: var(--success);
+            border: none;
+            border-radius: 12px;
         }
         
         /* How It Works */
@@ -1293,13 +1241,11 @@
                         </div>
                         
                         <div class="video-container">
-                            <video poster="https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" muted loop>
-                                <source src="https://assets.mixkit.co/videos/preview/mixkit-hands-using-smartphone-to-search-on-internet-34474-large.mp4" type="video/mp4">
-                                Your browser does not support the video tag.
-                            </video>
-                            <div class="play-button">
-                                <i class="fas fa-play"></i>
-                            </div>
+                            <iframe src="https://player.vimeo.com/video/1108542945?autoplay=0&loop=1&title=0&byline=0&portrait=0" 
+                                    frameborder="0" 
+                                    allow="autoplay; fullscreen; picture-in-picture" 
+                                    allowfullscreen>
+                            </iframe>
                         </div>
                         
                         <ul class="comparison-list without-list">
@@ -1331,13 +1277,11 @@
                         </div>
                         
                         <div class="video-container">
-                            <video poster="https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" muted loop>
-                                <source src="https://assets.mixkit.co/videos/preview/mixkit-graph-with-data-on-a-screen-34471-large.mp4" type="video/mp4">
-                                Your browser does not support the video tag.
-                            </video>
-                            <div class="play-button">
-                                <i class="fas fa-play"></i>
-                            </div>
+                            <iframe src="https://player.vimeo.com/video/1108542854?autoplay=0&loop=1&title=0&byline=0&portrait=0" 
+                                    frameborder="0" 
+                                    allow="autoplay; fullscreen; picture-in-picture" 
+                                    allowfullscreen>
+                            </iframe>
                         </div>
                         
                         <ul class="comparison-list with-list">
@@ -1775,35 +1719,6 @@
                 licenseElement.textContent = `Only ${licenses} licenses remaining`;
             }
         }, 30000);
-        
-        // Video play functionality
-        const playButtons = document.querySelectorAll('.play-button');
-        const videos = document.querySelectorAll('.video-container video');
-        
-        playButtons.forEach((button, index) => {
-            button.addEventListener('click', () => {
-                const video = videos[index];
-                if (video.paused) {
-                    video.play();
-                    button.innerHTML = '<i class="fas fa-pause"></i>';
-                } else {
-                    video.pause();
-                    button.innerHTML = '<i class="fas fa-play"></i>';
-                }
-            });
-        });
-        
-        videos.forEach(video => {
-            video.addEventListener('click', () => {
-                if (video.paused) {
-                    video.play();
-                    video.parentElement.querySelector('.play-button').innerHTML = '<i class="fas fa-pause"></i>';
-                } else {
-                    video.pause();
-                    video.parentElement.querySelector('.play-button').innerHTML = '<i class="fas fa-play"></i>';
-                }
-            });
-        });
     </script>
 </body>
 </html>
